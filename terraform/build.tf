@@ -26,7 +26,6 @@ module "image" {
   location = module.rg.rg_location
   tags     = module.rg.rg_tags
 
-
   images = {
     img01 = {
       gallery_name             = module.gallery.gallery_name
