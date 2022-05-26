@@ -16,7 +16,7 @@ resource "azurerm_shared_image" "shared_image" {
   accelerated_network_support_enabled = try(each.value.accelerated_network_support_enabled, null)
 
   dynamic "identifier" {
-    for_each = lookup(var.images, "identifier", {}) != {} ? [1] : []
+    for_each = lookup(var.images[each.key], "identifier", {}) != {} ? [1] : []
     content {
       publisher = lookup(var.images.identifier, "publisher", null)
       offer     = lookup(var.images.identifier, "offer", null)
@@ -25,7 +25,7 @@ resource "azurerm_shared_image" "shared_image" {
   }
 
   dynamic "purchase_plan" {
-    for_each = lookup(var.images, "purchase_plan", {}) != {} ? [1] : []
+    for_each = lookup(var.images[each.key], "purchase_plan", {}) != {} ? [1] : []
     content {
       publisher = lookup(var.images.purchase_plan, "publisher", null)
       name      = lookup(var.images.purchase_plan, "name", null)
