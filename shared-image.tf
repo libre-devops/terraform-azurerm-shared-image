@@ -18,18 +18,18 @@ resource "azurerm_shared_image" "shared_image" {
   dynamic "identifier" {
     for_each = lookup(var.images[each.key], "identifier", {}) != {} ? [1] : []
     content {
-      publisher = lookup(var.images.identifier, "publisher", null)
-      offer     = lookup(var.images.identifier, "offer", null)
-      sku       = lookup(var.images.identifier, "sku", null)
+      publisher = lookup(var.images[each.key].identifier, "publisher", null)
+      offer     = lookup(var.images[each.key].identifier, "offer", null)
+      sku       = lookup(var.images[each.key].identifier, "sku", null)
     }
   }
 
   dynamic "purchase_plan" {
     for_each = lookup(var.images[each.key], "purchase_plan", {}) != {} ? [1] : []
     content {
-      publisher = lookup(var.images.purchase_plan, "publisher", null)
-      name      = lookup(var.images.purchase_plan, "name", null)
-      product   = lookup(var.images.purchase_plan, "product", null)
+      publisher = lookup(var.images[each.key].purchase_plan, "publisher", null)
+      name      = lookup(var.images[each.key].purchase_plan, "name", null)
+      product   = lookup(var.images[each.key].purchase_plan, "product", null)
     }
   }
 }
