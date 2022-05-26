@@ -8,7 +8,7 @@ resource "azurerm_shared_image" "shared_image" {
   description                         = try(each.value.description, null)
   eula                                = try(each.value.eula, null)
   specialized                         = try(each.value.is_image_specialised, null)
-  hyper_v_generation                  = try(each.value.image_hyper_v_generation, null)
+  hyper_v_generation                  = try(upper(each.value.image_hyper_v_generation, null))
   os_type                             = title(each.value.image_os_type)
   privacy_statement_uri               = try(each.value.image_privacy_statement_uri, null)
   release_note_uri                    = try(each.value.image_release_note_uri, null)
