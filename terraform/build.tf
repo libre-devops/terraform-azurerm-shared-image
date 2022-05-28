@@ -37,6 +37,14 @@ module "image" {
         publisher = "LibreDevOps"
         offer     = "Image2"
         sku       = "Latest"
+
+      }
+
+      image_version_number = formatdate("YYYYMM", timestamp())
+      exclude_from_latest  = false
+
+      target_region = {
+        image_replication_zone_location = "westeurope"
       }
     }
   }
