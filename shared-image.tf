@@ -3,6 +3,7 @@ resource "azurerm_image" "azure_image" {
   name                = each.key
   location            = var.location
   resource_group_name = var.rg_name
+  tags                = var.tags
 
   hyper_v_generation        = upper(try(each.value.image_hyper_v_generation, null))
   zone_resilient            = try(each.value.zone_resilient, null)
