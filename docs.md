@@ -35,3 +35,6 @@ No modules.
 |------|-------------|
 | <a name="output_image_id"></a> [image\_id](#output\_image\_id) | The id of the image |
 | <a name="output_image_name"></a> [image\_name](#output\_image\_name) | The name of the image |
+| <a name="output_shared_image_gallery_name"></a> [shared\_image\_gallery\_name](#output\_shared\_image\_gallery\_name) | The name of the shared image gallery |
+| <a name="output_shared_image_id"></a> [shared\_image\_id](#output\_shared\_image\_id) | The id of the shared image |
+| <a name="output_shared_image_name"></a> [shared\_image\_name](#output\_shared\_image\_name) | The name of the shared image |
