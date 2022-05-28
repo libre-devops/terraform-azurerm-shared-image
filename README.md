@@ -27,18 +27,25 @@ module "image" {
   location = module.rg.rg_location
   tags     = module.rg.rg_tags
 
-
   images = {
     img01 = {
       gallery_name             = module.gallery.gallery_name
       is_image_specialised     = false
-      image_hyper_v_generation = "v2"
+      image_hyper_v_generation = "V2"
       image_os_type            = "Linux"
 
       identifier = {
         publisher = "LibreDevOps"
         offer     = "Image2"
         sku       = "Latest"
+
+      }
+
+      image_version_number = formatdate("YYYYMM", timestamp())
+      exclude_from_latest  = false
+
+      image_version_target_region = {
+        image_replication_zone_location = "westeurope"
       }
     }
   }
@@ -63,6 +70,7 @@ No modules.
 | Name | Type |
 |------|------|
 | [azurerm_shared_image.shared_image](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/shared_image) | resource |
+| [azurerm_shared_image_version.shared_image_version](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/shared_image_version) | resource |
 
 ## Inputs
 
