@@ -41,7 +41,7 @@ module "image" {
 
       }
 
-      image_version_number = formatdate("YYYYMM", timestamp())
+      image_version_number = formatdate("YYYY.MM", timestamp())
       exclude_from_latest  = false
 
       image_version_target_region = {
