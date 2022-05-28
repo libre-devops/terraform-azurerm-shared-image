@@ -35,7 +35,7 @@ resource "azurerm_shared_image" "shared_image" {
 }
 
 resource "azurerm_shared_image_version" "shared_image_version" {
-  for_each            = var.images && var.create_image_version == true ? [1] : []
+  for_each            = var.create_image_version == true ? var.images : []
   name                = each.value.image_version_number
   gallery_name        = azurerm_shared_image.shared_image[each.key].gallery_name
   image_name          = azurerm_shared_image.shared_image[each.key].gallery_name
