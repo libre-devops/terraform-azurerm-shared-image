@@ -16,7 +16,6 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [azurerm_image.azure_image](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/image) | resource |
 | [azurerm_shared_image.shared_image](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/shared_image) | resource |
 | [azurerm_shared_image_version.shared_image_version](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/shared_image_version) | resource |
 
@@ -33,8 +32,6 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_image_id"></a> [image\_id](#output\_image\_id) | The id of the image |
-| <a name="output_image_name"></a> [image\_name](#output\_image\_name) | The name of the image |
 | <a name="output_shared_image_gallery_name"></a> [shared\_image\_gallery\_name](#output\_shared\_image\_gallery\_name) | The name of the shared image gallery |
 | <a name="output_shared_image_id"></a> [shared\_image\_id](#output\_shared\_image\_id) | The id of the shared image |
 | <a name="output_shared_image_name"></a> [shared\_image\_name](#output\_shared\_image\_name) | The name of the shared image |
