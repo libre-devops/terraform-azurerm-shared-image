@@ -34,6 +34,12 @@ resource "azurerm_shared_image" "shared_image" {
   }
 }
 
+data "azurerm_shared_image" "data_shared_image" {
+  gallery_name        = azurerm_shared_image.shared_image.gallery_name
+  name                = azurerm_shared_image.shared_image.name
+  resource_group_name = azurerm_shared_image.shared_image.resource_group_name
+}
+
 resource "azurerm_shared_image_version" "shared_image_version" {
   for_each            = var.images
   name                = each.value.image_version_number
@@ -41,7 +47,7 @@ resource "azurerm_shared_image_version" "shared_image_version" {
   image_name          = azurerm_shared_image.shared_image[each.key].gallery_name
   resource_group_name = azurerm_shared_image.shared_image[each.key].resource_group_name
   location            = azurerm_shared_image.shared_image[each.key].location
-  managed_image_id    = try(each.value.managed_image_id, azurerm_shared_image.shared_image[each.key].id)
+  managed_image_id    = try(each.value.managed_image_id, data.azurerm_shared_image.data_shared_image.id)
   exclude_from_latest = try(each.value.exclude_from_latest, true)
   tags                = azurerm_shared_image.shared_image[each.key].tags
 
