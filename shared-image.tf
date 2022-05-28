@@ -11,7 +11,7 @@ resource "azurerm_image" "azure_image" {
   dynamic "os_disk" {
     for_each = lookup(var.images[each.key], "os_disk", {}) != {} ? [1] : []
     content {
-      name            = lookup(var.images[each.key].os_disk, "name", each.key)
+      os_type         = lookup(var.images[each.key].os_disk, "os_type", title(each.value.image_os_type))
       os_state        = lookup(var.images[each.key].os_disk, "os_state", "Generalized")
       caching         = lookup(var.images[each.key].os_disk, "caching", null)
       managed_disk_id = lookup(var.images[each.key].os_disk, "managed_disk_id", null)
