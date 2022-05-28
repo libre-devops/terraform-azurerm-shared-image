@@ -1,8 +1,8 @@
-variable "create_image_version" {
-  type        = bool
-  description = "Whether the for_each block for an image version is to be executed"
-  default     = false
-}
+#variable "create_image_version" {
+#  type        = bool
+#  description = "Whether the for_each block for an image version is to be executed"
+#  default     = false
+#}
 
 variable "images" {
   type        = any

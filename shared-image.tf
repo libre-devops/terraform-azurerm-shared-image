@@ -34,23 +34,23 @@ resource "azurerm_shared_image" "shared_image" {
   }
 }
 
-resource "azurerm_shared_image_version" "shared_image_version" {
-  for_each            = var.create_image_version == true ? [var.images] : []
-  name                = each.value.image_version_number
-  gallery_name        = azurerm_shared_image.shared_image[each.key].gallery_name
-  image_name          = azurerm_shared_image.shared_image[each.key].gallery_name
-  resource_group_name = azurerm_shared_image.shared_image[each.key].resource_group_name
-  location            = azurerm_shared_image.shared_image[each.key].location
-  managed_image_id    = try(each.value.managed_image_id, null)
-  exclude_from_latest = try(each.value.exclude_from_latest, true)
-  tags                = azurerm_shared_image.shared_image[each.key].tags
-
-  dynamic "target_region" {
-    for_each = lookup(var.images[each.key], "image_version_target_region", {}) != {} ? [1] : []
-    content {
-      name                   = lookup(var.images[each.key].image_version_target_region, "image_replication_zone_location_name", var.location)
-      regional_replica_count = lookup(var.images[each.key].image_version_target_region, "regional_replica_count", "2")
-      storage_account_type   = lookup(var.images[each.key].image_version_target_region, "storage_account_type", "Standard_LRS")
-    }
-  }
-}
+#resource "azurerm_shared_image_version" "shared_image_version" {
+#  for_each            = var.create_image_version == true ? [var.images] : []
+#  name                = each.value.image_version_number
+#  gallery_name        = azurerm_shared_image.shared_image[each.key].gallery_name
+#  image_name          = azurerm_shared_image.shared_image[each.key].gallery_name
+#  resource_group_name = azurerm_shared_image.shared_image[each.key].resource_group_name
+#  location            = azurerm_shared_image.shared_image[each.key].location
+#  managed_image_id    = try(each.value.managed_image_id, null)
+#  exclude_from_latest = try(each.value.exclude_from_latest, true)
+#  tags                = azurerm_shared_image.shared_image[each.key].tags
+#
+#  dynamic "target_region" {
+#    for_each = lookup(var.images[each.key], "image_version_target_region", {}) != {} ? [1] : []
+#    content {
+#      name                   = lookup(var.images[each.key].image_version_target_region, "image_replication_zone_location_name", var.location)
+#      regional_replica_count = lookup(var.images[each.key].image_version_target_region, "regional_replica_count", "2")
+#      storage_account_type   = lookup(var.images[each.key].image_version_target_region, "storage_account_type", "Standard_LRS")
+#    }
+#  }
+#}
