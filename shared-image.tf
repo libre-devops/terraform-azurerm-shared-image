@@ -41,7 +41,7 @@ resource "azurerm_shared_image_version" "shared_image_version" {
   image_name          = azurerm_shared_image.shared_image[each.key].gallery_name
   resource_group_name = azurerm_shared_image.shared_image[each.key].resource_group_name
   location            = azurerm_shared_image.shared_image[each.key].location
-  managed_image_id    = try(each.value.managed_image_id, null)
+  managed_image_id    = try(each.value.managed_image_id, azurerm_shared_image.shared_image.id)
   exclude_from_latest = try(each.value.exclude_from_latest, true)
   os_disk_snapshot_id = try(each.value.exclude_from_latest, null)
   tags                = azurerm_shared_image.shared_image[each.key].tags

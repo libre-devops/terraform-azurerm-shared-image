@@ -38,7 +38,6 @@ module "image" {
         publisher = "LibreDevOps"
         offer     = "Image2"
         sku       = "Latest"
-
       }
 
       image_version_number = formatdate("YYYY.MM", timestamp())
