@@ -39,7 +39,8 @@ module "image" {
         offer     = "Image2"
         sku       = "Latest"
       }
-
+      
+      create_image_version = true
       image_version_number = formatdate("YYYY.MM", timestamp())
       exclude_from_latest  = false
 
@@ -75,6 +76,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_create_image_version"></a> [create\_image\_version](#input\_create\_image\_version) | Whether the for\_each block for an image version is to be executed | `bool` | `false` | no |
 | <a name="input_images"></a> [images](#input\_images) | The images block | `any` | n/a | yes |
 | <a name="input_location"></a> [location](#input\_location) | The location for this resource to be put in | `string` | n/a | yes |
 | <a name="input_rg_name"></a> [rg\_name](#input\_rg\_name) | The name of the resource group, this module does not create a resource group, it is expecting the value of a resource group already exists | `string` | n/a | yes |
