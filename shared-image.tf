@@ -43,7 +43,6 @@ resource "azurerm_shared_image_version" "shared_image_version" {
   location            = azurerm_shared_image.shared_image[each.key].location
   managed_image_id    = try(each.value.managed_image_id, azurerm_shared_image.shared_image[each.key].id)
   exclude_from_latest = try(each.value.exclude_from_latest, true)
-  os_disk_snapshot_id = try(each.value.exclude_from_latest, null)
   tags                = azurerm_shared_image.shared_image[each.key].tags
 
   dynamic "target_region" {
