@@ -35,13 +35,13 @@ resource "azurerm_shared_image" "shared_image" {
 }
 
 resource "azurerm_shared_image_version" "shared_image_version" {
-  for_each            = var.images
+  for_each            = var.images && var.create_image_version == true ? [1] : []
   name                = each.value.image_version_number
   gallery_name        = azurerm_shared_image.shared_image[each.key].gallery_name
   image_name          = azurerm_shared_image.shared_image[each.key].gallery_name
   resource_group_name = azurerm_shared_image.shared_image[each.key].resource_group_name
   location            = azurerm_shared_image.shared_image[each.key].location
-  managed_image_id    = try(each.value.managed_image_id, azurerm_image.azure_image[each.key].id)
+  managed_image_id    = try(each.value.managed_image_id, null)
   exclude_from_latest = try(each.value.exclude_from_latest, true)
   tags                = azurerm_shared_image.shared_image[each.key].tags
 
