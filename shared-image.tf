@@ -35,9 +35,10 @@ resource "azurerm_shared_image" "shared_image" {
 }
 
 data "azurerm_shared_image" "data_shared_image" {
-  gallery_name        = azurerm_shared_image.shared_image.gallery_name
-  name                = azurerm_shared_image.shared_image.name
-  resource_group_name = azurerm_shared_image.shared_image.resource_group_name
+  for_each            = var.images
+  gallery_name        = azurerm_shared_image.shared_image[each.key].gallery_name
+  name                = azurerm_shared_image.shared_image[each.key].name
+  resource_group_name = azurerm_shared_image.shared_image[each.key].resource_group_name
 }
 
 resource "azurerm_shared_image_version" "shared_image_version" {
